@@ -1,6 +1,6 @@
 ## Description
 
-A Nest.js Typescript service that generates Apple Wallet and GPay loyalty/store cards, with a one time use pin number.
+A NestJS Typescript service that generates Apple Wallet and GPay loyalty/store cards, including a one time use pin number.
 
 ## Installation
 
