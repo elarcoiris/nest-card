@@ -6,7 +6,7 @@ import { createServer, proxy } from 'aws-serverless-express';
 import { eventContext } from 'aws-serverless-express/middleware';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { config } from 'dotenv';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 
 config();
 
@@ -19,16 +19,19 @@ async function bootstrap() {
   // await app.listen(3000);
   if (!cachedServer) {
     const expressApp = require('express')();
-    const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
+    const nestApp = await NestFactory.create(
+      AppModule,
+      new ExpressAdapter(expressApp),
+    );
     // nestApp.use(bodyParser.json());
     // nestApp.use(bodyParser.urlencoded({extended: true}));
     nestApp.use(eventContext());
     nestApp.enableCors({
-      'origin': '*',
-      'methods': 'GET, HEAD, PUT, PATCH, POST, DELETE',
-      'preflightContinue': true,
-      'optionsSuccessStatus': 204,
-      'credentials': true
+      origin: '*',
+      methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+      preflightContinue: true,
+      optionsSuccessStatus: 204,
+      credentials: true,
     });
     await nestApp.init();
     await nestApp.listen(3000);
@@ -40,4 +43,4 @@ bootstrap();
 export const handler: Handler = async (event: any, context: Context) => {
   cachedServer = await bootstrap();
   return proxy(cachedServer, event, context, 'PROMISE').promise;
-}
+};
