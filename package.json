@@ -39,7 +39,7 @@
     "winston": "^3.7.2"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.4.5",
+    "@nestjs/cli": "^11.0.11",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^11.0.16",
     "@types/aws-lambda": "^8.10.95",
