@@ -1,3 +1,4 @@
+import express from 'express';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Handler, Context } from 'aws-lambda';
@@ -18,7 +19,7 @@ async function bootstrap() {
   // const app = await NestFactory.create(AppModule);
   // await app.listen(3000);
   if (!cachedServer) {
-    const expressApp = require('express')();
+    const expressApp = express();
     const nestApp = await NestFactory.create(
       AppModule,
       new ExpressAdapter(expressApp),
@@ -34,7 +35,7 @@ async function bootstrap() {
       credentials: true,
     });
     await nestApp.init();
-    await nestApp.listen(3000);
+    await nestApp.listen(3001);
     cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
   }
   return cachedServer;
