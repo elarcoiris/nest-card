@@ -40,7 +40,8 @@ export class AppleController {
         }
       });
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      const message = error instanceof Error ? error.message : 'An error occurred';
+      throw new HttpException(message, HttpStatus.BAD_REQUEST);
     }
   }
 }
