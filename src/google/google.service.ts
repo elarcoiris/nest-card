@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { AwsClient } from 'src/utils/awsClient';
+import { AwsClient } from '../utils/awsClient';
 
 @Injectable()
 export class GoogleService {

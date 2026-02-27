@@ -14,7 +14,7 @@ export class AwsClient {
 
     this.dynamoDB = new DynamoDB.DocumentClient({
       ...(process.env.ENV === 'development' && {
-        endpoint: 'http:localhost:8008',
+        endpoint: 'http://localhost:8008',
         region: 'localhost',
         accessKeyId: process.env.DEFAULT_ACCESS_KEY,
         secretAccessKey: process.env.DEFAULT_SECRET,
@@ -50,7 +50,7 @@ export class AwsClient {
     } catch (error) {
       logger.error(
         `There was an issue retrieving key ${key} from secrets: ${JSON.stringify(
-          error.message,
+          (error as Error).message,
         )}`,
       );
     }
