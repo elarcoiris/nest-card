@@ -26,7 +26,7 @@
   "dependencies": {
     "@nestjs/common": "^11.1.17",
     "@nestjs/core": "^11.1.18",
-    "@nestjs/platform-express": "^11.2.6",
+    "@nestjs/platform-express": "^12.3.2",
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1693.0",
     "aws-serverless-express": "^3.4.0",
